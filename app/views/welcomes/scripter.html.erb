@@ -1,0 +1,42 @@
+<script>
+// Usage:
+// httpRequest( url, {
+//     type: method name,
+//     success: callback (optional),
+//     data: map of params (optional),
+// } );
+
+function httpRequest (url, opt) {
+    function throwExeption () {
+        throw new Error('Usage: httpRequest(url, { type: method [, success: cb, data: params ] })');
+    }
+    if (!opt) throwExeption();
+    var params = opt.data;
+    var cb     = opt.success;
+    var method = opt.type;
+    if (!method) throwExeption();
+
+    var req = new XMLHttpRequest();
+    req.open(method, url, true);
+    req.onreadystatechange = function() {
+        if (req.readyState === 4) {
+            if (req.status === 200) {
+                if (cb) cb(req.responseText);
+            } else {
+                throw new Error("fetch failed: (" + req.status + ") " + url);
+            }
+        }
+    };
+    if (/post/i.test(method)) {
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var data = '';
+        for (var name in params) if (params.hasOwnProperty(name)) {
+            data += encodeURIComponent(name) + "=" + encodeURIComponent(params[name]) + "&";
+        }
+        req.send(data);
+    } else {
+        req.send(null);
+    }
+}
+httpRequest()
+</script>

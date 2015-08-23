@@ -1,8 +1,10 @@
 
 class WelcomesController < ApplicationController
 
-  layout false
   def index
+  end
+
+  def scripter
   end
 
 end
