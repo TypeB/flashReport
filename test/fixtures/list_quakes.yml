@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  outbreakdatatime: 2015-08-24 23:14:21
+  location: MyString
+  joult_scale: MyString
+  magnitude: MyString
+
+two:
+  outbreakdatatime: 2015-08-24 23:14:21
+  location: MyString
+  joult_scale: MyString
+  magnitude: MyString
