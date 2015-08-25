@@ -105,7 +105,11 @@ class EarthquakeInformationsController < ApplicationController
 		end
 		#render :text => result[0], :status => 200
 	end
-
+	def show
+		@quak = ListQuake.all
+		p @quak
+		render "show", :formats => [:json], :handlers => [:jbuilder]
+	end
 
 
 	private
