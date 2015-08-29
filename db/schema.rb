@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(version: 20150824141421) do
 
   create_table "list_quakes", force: :cascade do |t|
     t.datetime "outbreakdatatime"
-    t.string   "location",         limit: 255
-    t.string   "joult_scale",      limit: 255
-    t.string   "magnitude",        limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "location",          limit: 255
+    t.string   "jolt_scale",        limit: 255
+    t.integer  "jolt_scale_number", limit: 4
+    t.string   "magnitude",         limit: 255
+    t.string   "url",               limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end

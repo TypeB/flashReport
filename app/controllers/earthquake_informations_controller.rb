@@ -7,11 +7,14 @@ class EarthquakeInformationsController < ApplicationController
 	def index
 		#self.api_type_zish
 		quaks = self.api_type_p2pquake
-		puts quaks
+		#puts quaks
 		#self.api_type_p2pquake
 		for c in quaks do
+			p "----------------------------"
+			p c[:outbreakdatatime]
+			p "----------------------------"
 			if (!ListQuake.exists?(:outbreakdatatime=>c[:outbreakdatatime],:location=>c[:location]))
-				list_quak = ListQuake.new({outbreakdatatime:c[:outbreakdatatime] ,location:c[:location],joult_scale:c[:joult_scale],magnitude:c[:magnitude]})
+				list_quak = ListQuake.new({outbreakdatatime:c[:outbreakdatatime] ,location:c[:location],jolt_scale:c[:jolt_scale],jolt_scale_number:c[:jolt_scale_number],magnitude:c[:magnitude],url:c[:url]})
 				list_quak.save
 			end
 		end
@@ -62,7 +65,7 @@ class EarthquakeInformationsController < ApplicationController
 		  for i in data do
 		  	#puts i["category"]
 		  	if (i["category"] == "震源・詳細震度情報" )
-				list.push({:location => i["center"] , :joult_scale => i["intensity"] , :magnitude => i["magnitude"] , :outbreakdatatime => i["time"]})
+				list.push({:location => i["center"] , :jolt_scale => i["intensity"] , :magnitude => i["magnitude"] , :outbreakdatatime => i["time"]})
 
 		  	end
 
@@ -83,16 +86,15 @@ class EarthquakeInformationsController < ApplicationController
 		res = https.start {
 		  https.get(uri.request_uri)
 		}
-
 		if res.code == '200'
 		  result = JSON.parse(res.body)
-		  #p result[0]
+		  p result
 		  for i in result do
 		  	if (i["code"] == 551 )
 		  		if(i["issue"]["type"] == "DetailScale")
 
 
-					list.push({:location =>i["earthquake"]["hypocenter"]["name"], :joult_scale => convert_max_scale(i["earthquake"]["maxScale"]) , :magnitude => i["earthquake"]["hypocenter"]["magnitude"], :outbreakdatatime => Time.strptime(i["earthquake"]["time"] , "%d日%H時%M分") })
+					list.push({:url =>"http://zish.in/#!/quake/latest", :location =>i["earthquake"]["hypocenter"]["name"], :jolt_scale => convert_max_scale(i["earthquake"]["maxScale"]) , :jolt_scale_number => i["earthquake"]["maxScale"], :magnitude => i["earthquake"]["hypocenter"]["magnitude"], :outbreakdatatime => Time.strptime(i["earthquake"]["time"] , "%d日%H時%M分") })
 
 			  	end
 
@@ -106,8 +108,13 @@ class EarthquakeInformationsController < ApplicationController
 		#render :text => result[0], :status => 200
 	end
 	def show
-		@quak = ListQuake.all
-		p @quak
+		#@quak = ListQuake.where(:jolt_scale)
+		p Time.current
+		
+		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
+		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
+
+		
 		render "show", :formats => [:json], :handlers => [:jbuilder]
 	end
 
