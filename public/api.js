@@ -51,20 +51,29 @@ function sendRequest (method, url, data, async)
 function renderhtml (rawJson)
 {
   var data = JSON.parse(rawJson);
-  if (data.items.length != 0){
+  if (data.data.length != 0){
   // document.body.innerHTML = ;
-    var emergencyElement = document.getElementById("emergency");
-    for(item of data.items){
+    // var emergencyElement = document.getElementById("emergency");
+    var element = document.body.firstChild;
+    // for(item of data.data){
+      item = data.data[0];
       var disasterDiv = document.createElement('div');
       disasterDiv.style.backgroundColor = "#FFEFED";
       disasterDiv.style.color = "#EA161B";
       disasterDiv.style.textAlign = "center";
       disasterDiv.style.fontWeight = "bold";
       disasterDiv.style.marginBottom = "0.5em";
-      disasterDiv.innerHTML = "【速報】" + item.location + "で震度" + item.joult_scale + "の地震ｷﾀ━━━━━(((ﾟ∀ﾟ)))━━━━━!!!!";
-      var parentDiv = emergencyElement.parentNode;
-      parentDiv.insertBefore(disasterDiv, emergencyElement);
-    }
+      disasterDiv.style.zIndex = "1000000";
+      disasterDiv.style.width = "100%";
+      disasterDiv.style.position = "absolute";
+      disasterDiv.innerHTML = "【速報】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
+      // var parentDiv = emergencyElement.parentNode;
+      var parentDiv = element.parentNode;
+      parentDiv.insertBefore(disasterDiv, element);
+      // parentDiv.insertBefore(disasterDiv, emergencyElement);
+    // document.body.appendChild(disasterDiv);
+
+    // }
   };
 }
 
