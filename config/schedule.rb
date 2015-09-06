@@ -11,7 +11,7 @@ set :output, "./log/cron_log.log"
 set :environment, :production
 
 every 1.minutes do
-  runner "EarthquakeInformationsController.index"
+  command "curl http://localhost:8080/getjson"
 end
 
 #
