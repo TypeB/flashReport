@@ -10,7 +10,7 @@ set :output, "./log/cron_log.log"
 # ジョブの実行環境の指定
 set :environment, :production
 
-every 1.second do
+every 1.minutes do
   runner "EarthquakeInformationsController.index"
 end
 
