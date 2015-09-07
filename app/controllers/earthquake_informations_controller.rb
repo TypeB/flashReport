@@ -10,9 +10,7 @@ class EarthquakeInformationsController < ApplicationController
 		#puts quaks
 		#self.api_type_p2pquake
 		for c in quaks do
-			p "----------------------------"
-			p c[:outbreakdatatime]
-			p "----------------------------"
+
 			if (!ListQuake.exists?(:outbreakdatatime=>c[:outbreakdatatime],:location=>c[:location]))
 				list_quak = ListQuake.new({outbreakdatatime:c[:outbreakdatatime] ,location:c[:location],jolt_scale:c[:jolt_scale],jolt_scale_number:c[:jolt_scale_number],magnitude:c[:magnitude],url:c[:url]})
 				list_quak.save
@@ -21,7 +19,7 @@ class EarthquakeInformationsController < ApplicationController
 
 		
 		# list_quak.save
-		render :text => "test", :status => 200
+		render :text => "ok", :status => 200
 	end
 	def api_type_zish
 		#http://zish.in/api/quake.json
@@ -35,11 +33,11 @@ class EarthquakeInformationsController < ApplicationController
 
 		if res.code == '200'
 		  result = JSON.parse(res.body)
-		  puts "---------------------------"
-		  puts result["Place"]
-		  puts result["MaxIntensity"]
-		  puts result["Magnitude"]
-		  puts result["QuakeDateTime"]
+		  # puts "---------------------------"
+		  # puts result["Place"]
+		  # puts result["MaxIntensity"]
+		  # puts result["Magnitude"]
+		  # puts result["QuakeDateTime"]
 		else
 		  puts "OMG!! #{res.code} #{res.message}"
 		end
@@ -109,7 +107,7 @@ class EarthquakeInformationsController < ApplicationController
 	end
 	def show
 		#@quak = ListQuake.where(:jolt_scale)
-		p Time.current
+		#p Time.current
 		
 		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
 		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
