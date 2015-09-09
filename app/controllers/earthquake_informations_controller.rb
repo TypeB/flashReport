@@ -113,11 +113,24 @@ class EarthquakeInformationsController < ApplicationController
 		
 		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
 		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
-
+		p @quaks
 		
 		render "show", :formats => [:json], :handlers => [:jbuilder]
 	end
-
+	def showdemo
+		quak_mocks = [ {
+	    	id: 1,
+	    	url: "http://zish.in/#!/quake/latest",
+	    	location:"千葉県東方沖",
+	    	jolt_scale:"6",
+	    	data_type:1,
+	    	outbreakdatatime:"2015年 09月 07日 18時 47分"
+	  	}]
+	  	p quak_mocks
+		#quak_mocks = [{"id" :1,"url" :"http://zish.in/#!/quake/latest","location":"千葉県東方沖","jolt_scale":"6","data_type":1,"outbreakdatatime":"2015年 09月 07日 18時 47分"}]
+		#p quak_mocks
+		render "showdemo", :formats=>[:json],:handlers=>[:jbuilder],locals: {quak_mocks: quak_mocks}
+	end
 
 	private
 		def convert_max_scale(scale)
