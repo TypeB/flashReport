@@ -45,3 +45,5 @@ group :development, :test do
   gem 'spring'
 end
 
+# crontab管理
+gem 'whenever', :require => false
