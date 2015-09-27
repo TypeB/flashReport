@@ -78,4 +78,4 @@ function renderhtml (rawJson)
 }
 
 
-window.onload = sendRequest("GET", "http://flashreport.red/api", null, true)
+window.onload = sendRequest("GET", "http://flashreport.red/apidemo", null, true)
