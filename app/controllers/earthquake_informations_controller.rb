@@ -108,8 +108,8 @@ class EarthquakeInformationsController < ApplicationController
 		#p Time.current
 
 		
-		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
-		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
+		@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
+		#@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
 		
 		render "show", :formats => [:json], :handlers => [:jbuilder]
 	end
