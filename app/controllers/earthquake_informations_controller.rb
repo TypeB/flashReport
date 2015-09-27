@@ -15,10 +15,8 @@ class EarthquakeInformationsController < ApplicationController
 				list_quak.save
 			end
 		end
-
-		
 		# list_quak.save
-		render :text => "test", :status => 200
+		render :text => "ok", :status => 200
 	end
 	def api_type_zish
 		#http://zish.in/api/quake.json
@@ -32,11 +30,11 @@ class EarthquakeInformationsController < ApplicationController
 
 		if res.code == '200'
 		  result = JSON.parse(res.body)
-		  puts "---------------------------"
-		  puts result["Place"]
-		  puts result["MaxIntensity"]
-		  puts result["Magnitude"]
-		  puts result["QuakeDateTime"]
+		  # puts "---------------------------"
+		  # puts result["Place"]
+		  # puts result["MaxIntensity"]
+		  # puts result["Magnitude"]
+		  # puts result["QuakeDateTime"]
 		else
 		  puts "OMG!! #{res.code} #{res.message}"
 		end
@@ -106,6 +104,9 @@ class EarthquakeInformationsController < ApplicationController
 	end
 	def show
 		#@quak = ListQuake.where(:jolt_scale)
+
+		#p Time.current
+
 		
 		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
 		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
