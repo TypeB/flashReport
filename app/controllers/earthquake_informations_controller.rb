@@ -10,14 +10,11 @@ class EarthquakeInformationsController < ApplicationController
 		#puts quaks
 		#self.api_type_p2pquake
 		for c in quaks do
-
 			if (!ListQuake.exists?(:outbreakdatatime=>c[:outbreakdatatime],:location=>c[:location]))
 				list_quak = ListQuake.new({outbreakdatatime:c[:outbreakdatatime] ,location:c[:location],jolt_scale:c[:jolt_scale],jolt_scale_number:c[:jolt_scale_number],magnitude:c[:magnitude],url:c[:url]})
 				list_quak.save
 			end
 		end
-
-		
 		# list_quak.save
 		render :text => "ok", :status => 200
 	end
@@ -107,15 +104,27 @@ class EarthquakeInformationsController < ApplicationController
 	end
 	def show
 		#@quak = ListQuake.where(:jolt_scale)
+
 		#p Time.current
+
 		
 		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
 		@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
-
 		
 		render "show", :formats => [:json], :handlers => [:jbuilder]
 	end
-
+	def showdemo
+		quak_mocks = [ {
+	    	id: 1,
+	    	url: "http://zish.in/#!/quake/latest",
+	    	location:"千葉県東方沖",
+	    	jolt_scale:"6",
+	    	data_type:1,
+	    	outbreakdatatime:"2015年 09月 07日 18時 47分"
+	  	}]
+		#quak_mocks = [{"id" :1,"url" :"http://zish.in/#!/quake/latest","location":"千葉県東方沖","jolt_scale":"6","data_type":1,"outbreakdatatime":"2015年 09月 07日 18時 47分"}]
+		render "showdemo", :formats=>[:json],:handlers=>[:jbuilder],locals: {quak_mocks: quak_mocks}
+	end
 
 	private
 		def convert_max_scale(scale)
