@@ -55,6 +55,15 @@ function renderhtml (rawJson)
   // document.body.innerHTML = ;
     // var emergencyElement = document.getElementById("emergency");
     var element = document.body.firstChild;
+    var close = new Function("close('');");
+    closeSpan = document.createElement("span");
+    closeSpan.style.position = "absolute";
+    closeSpan.style.right = "10px";
+    closeSpan.style.cursor = "pointer";
+    closeSpan.innerHTML = "×";
+    closeSpan.onclick = close;
+
+
     // for(item of data.data){
       item = data.data[0];
       var disasterDiv = document.createElement('div');
@@ -67,6 +76,7 @@ function renderhtml (rawJson)
       disasterDiv.style.width = "100%";
       disasterDiv.style.position = "absolute";
       disasterDiv.innerHTML = "【速報】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
+      disasterDiv.appendChild(closeSpan);
       // var parentDiv = emergencyElement.parentNode;
       var parentDiv = element.parentNode;
       parentDiv.insertBefore(disasterDiv, element);
@@ -76,6 +86,10 @@ function renderhtml (rawJson)
     // }
   };
 }
-
+function close()
+{
+  var infowindow = document.getElementById("infowindow");
+  infowindow.style.display = "none";
+}
 
 window.onload = sendRequest("GET", "http://flashreport.red/api", null, true)
