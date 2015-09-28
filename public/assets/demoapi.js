@@ -56,7 +56,17 @@ function renderhtml (rawJson)
     // var emergencyElement = document.getElementById("emergency");
     var element = document.body.firstChild;
     // for(item of data.data){
+      var close = new Function("close('');");
+      closeSpan = document.createElement("span");
+      closeSpan.style.position = "absolute";
+      closeSpan.style.right = "10px";
+      closeSpan.style.cursor = "pointer";
+      closeSpan.innerHTML = "×";
+      closeSpan.onclick = close;
+
+
       item = data.data[0];
+
       var disasterDiv = document.createElement('div');
       disasterDiv.style.backgroundColor = "#FFEFED";
       disasterDiv.style.color = "#EA161B";
@@ -64,18 +74,26 @@ function renderhtml (rawJson)
       disasterDiv.style.fontWeight = "bold";
       disasterDiv.style.marginBottom = "0.5em";
       disasterDiv.style.zIndex = "1000000";
-      disasterDiv.style.width = "100%";
+      disasterDiv.style.width = "99%";
       disasterDiv.style.position = "absolute";
+      disasterDiv.id = "infowindow";
       disasterDiv.innerHTML = "【速報】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
-      // var parentDiv = emergencyElement.parentNode;
+      disasterDiv.appendChild(closeSpan);
+ 
       var parentDiv = element.parentNode;
       parentDiv.insertBefore(disasterDiv, element);
+
+
       // parentDiv.insertBefore(disasterDiv, emergencyElement);
     // document.body.appendChild(disasterDiv);
 
     // }
   };
 }
-
+function close()
+{
+  var infowindow = document.getElementById("infowindow");
+  infowindow.style.display = "none";
+}
 
 window.onload = sendRequest("GET", "http://flashreport.red/apidemo", null, true)
