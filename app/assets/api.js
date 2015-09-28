@@ -73,8 +73,9 @@ function renderhtml (rawJson)
       disasterDiv.style.fontWeight = "bold";
       disasterDiv.style.marginBottom = "0.5em";
       disasterDiv.style.zIndex = "1000000";
-      disasterDiv.style.width = "100%";
+      disasterDiv.style.width = "99%";
       disasterDiv.style.position = "absolute";
+      disasterDiv.id = "infowindow";
       disasterDiv.innerHTML = "【速報】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
       disasterDiv.appendChild(closeSpan);
       // var parentDiv = emergencyElement.parentNode;
