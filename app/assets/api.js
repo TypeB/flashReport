@@ -93,7 +93,7 @@ function close()
   infowindow.style.display = "none";
 }
 
-window.onload = sendRequest("GET", "http://flashreport.red/api", null, true)
+window.onload = sendRequest("GET", "https://flashreport.red/api", null, true)
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

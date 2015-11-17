@@ -108,16 +108,16 @@ class EarthquakeInformationsController < ApplicationController
 		#p Time.current
 
 		
-		@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
-		#@quaks = ListQuake.all.collect{|quake| quake.data_type = 1 and quake}
-		
+		#@quak = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago)
+		#@quak = ListQuake.where("jolt_scale_number >= 40").collect{|quake| quake.data_type = 1 and quake}
+		@quake_list = ListQuake.where("outbreakdatatime > ? and jolt_scale_number >= 40",1.hours.ago).collect{|quake| quake.data_type = 1 and quake}
 		render "show", :formats => [:json], :handlers => [:jbuilder]
 	end
 	def showdemo
 		quak_mocks = [ {
 	    	id: 1,
 	    	url: "http://zish.in/#!/quake/latest",
-	    	location:"千葉県東方沖",
+	    	location:"てすと千葉県東方沖",
 	    	jolt_scale:"6",
 	    	data_type:1,
 	    	outbreakdatatime:"2015年 09月 07日 18時 47分"

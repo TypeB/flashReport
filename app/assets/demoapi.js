@@ -77,7 +77,7 @@ function renderhtml (rawJson)
       disasterDiv.style.width = "99%";
       disasterDiv.style.position = "absolute";
       disasterDiv.id = "infowindow";
-      disasterDiv.innerHTML = "【速報】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
+      disasterDiv.innerHTML = "【デモ】" + item.outbreakdatatime + "に" + item.location + "で震度" + item.jolt_scale + "の地震";
       disasterDiv.appendChild(closeSpan);
  
       var parentDiv = element.parentNode;
@@ -96,4 +96,4 @@ function close()
   infowindow.style.display = "none";
 }
 
-window.onload = sendRequest("GET", "http://flashreport.red/apidemo", null, true)
+window.onload = sendRequest("GET", "https://flashreport.red/apidemo", null, true)
