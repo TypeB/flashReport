@@ -117,7 +117,7 @@ class EarthquakeInformationsController < ApplicationController
 		quak_mocks = [ {
 	    	id: 1,
 	    	url: "http://zish.in/#!/quake/latest",
-	    	location:"てすと千葉県東方沖",
+	    	location:"テスト千葉県東方沖",
 	    	jolt_scale:"6",
 	    	data_type:1,
 	    	outbreakdatatime:"2015年 09月 07日 18時 47分"

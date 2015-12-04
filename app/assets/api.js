@@ -48,6 +48,20 @@ function sendRequest (method, url, data, async)
     xmlhttp.send(data);
 }
 
+// ファイルにアクセスし受信内容を確認します
+function sendGA (method, url, data, async)
+{
+    // XMLHttpRequestオブジェクト生成
+    var xmlhttp = createHttpRequest();
+
+    // open メソッド
+    xmlhttp.open(method, url, async);
+    // HTTPリクエストヘッダを設定
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // send メソッド
+    xmlhttp.send(data);
+}
+
 function renderhtml (rawJson)
 {
   var data = JSON.parse(rawJson);
@@ -93,12 +107,8 @@ function close()
   infowindow.style.display = "none";
 }
 
-window.onload = sendRequest("GET", "https://flashreport.red/api", null, true)
-
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-69417810-1', 'auto');
-ga('send', 'pageview');
+data = "v=1&tid=UA-69417810-1&cid=6bc1a344-e53c-4ec7-84b7-a29e2a050256&t=pageview&dl=&dp=a&dr=" + encodeURIComponent(document.baseURI)
+window.onload = (function(){
+  sendRequest("GET", "https://flashreport.red/api", null, true)
+  sendGA("GET", "http://www.google-analytics.com/collect", data, true)
+})();
