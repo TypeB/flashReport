@@ -1,0 +1,129 @@
+html, body {height: 100%;}
+
+.container {
+  margin-top: 10px;
+}
+.title img{
+  height: 44px;
+}
+
+.wrap {
+ width: 100%;
+ position: relative;
+ min-height: 100%;
+}
+
+.jumbotron-bg {
+  background-image: url(../bg.png);
+  background-size: 192px 96px;
+}
+
+.jumbotron-bg .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: transparent; /* Old browsers */
+}
+
+@media (min-width:768px) {
+    .jumbotron-bg .jumbotron {
+      width: 750px;
+      height: 480px; 
+    }
+}
+
+@media (min-width:992px) {
+    .jumbotron-bg .jumbotron{
+      width: 970px;
+      height: 480px; 
+    }
+}
+
+@media (min-width:1200px) {
+    .jumbotron-bg .jumbotron {
+      width: 1170px;
+      height: 480px;  
+    }
+}
+
+.jumbotron {
+  background: url(../img2.png);
+  background-size: cover;
+  background-position: 0 120px;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 320px;
+}
+
+.jumbotron h2 {
+  position: relative;
+  top: 0px;
+  text-align: center;
+  font-weight: normal;
+}
+
+@media (max-width:768px) {
+  .jumbotron {
+    background-position: 0 60px;
+  }
+  
+  .jumbotron h2 {
+    position: relative;
+    top: -32px;
+  }
+  .jumbotron-bg .jumbotron {
+    width: 94%;
+    height: 280px;
+  }
+  .jumbotron-bg .jumbotron h2 {
+    font-size:1.7em;
+    margin-top: 1.5em;
+  }
+  
+  .jumbotron-bg {
+    background-size: 128px 64px;
+  }
+}
+
+
+@media (max-width:480px) {
+  .jumbotron-bg .jumbotron {
+    height: 180px;
+  }
+    .jumbotron-bg .jumbotron h2 {
+      font-size:1.4em;
+      margin-top: 1.4em;
+    }
+}
+
+article {
+  font-size: 120%;
+}
+
+article h3 {
+  font-size: 1.3em;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.container.contents {
+  padding-bottom:180px;
+}
+
+.footer {
+  background-color: #483e2e;
+  width: 100%;
+  margin: 0;
+  height:100px;
+  padding: 20px 0;
+  position:absolute;
+  bottom:0;
+}
+
+.footer p {
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    padding: 4px;
+}
