@@ -107,8 +107,8 @@ function close()
   infowindow.style.display = "none";
 }
 
-data = "v=1&tid=UA-69417810-1&cid=6bc1a344-e53c-4ec7-84b7-a29e2a050256&t=pageview&dl=&dp=a&dr=" + encodeURIComponent(document.baseURI)
+data = "v=1&tid=UA-69417810-1&cid=6bc1a344-e53c-4ec7-84b7-a29e2a050256&t=pageview&dh=test.test.com&dl=&dp=/?SID=haaaaa&dt=PageTitle&dr=" + encodeURIComponent(document.baseURI)
 window.onload = (function(){
-  sendRequest("GET", "https://flashreport.red/api", null, true)
-  sendGA("GET", "http://www.google-analytics.com/collect", data, true)
+  sendRequest("GET", "https://flashreport.red/v1/api", null, true)
+  sendGA("GET", "https://www.google-analytics.com/collect", data, true)
 })();
