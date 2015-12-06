@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get "getjson" => "earthquake_informations#index"
+  get "v1/getjson" => "earthquake_informations#index"
 
-  get "api"=>"earthquake_informations#show"
-  get "apidemo"=>"earthquake_informations#showdemo"
+  get "v1/api"=>"earthquake_informations#show"
+  get "v1/apidemo"=>"earthquake_informations#showdemo"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
